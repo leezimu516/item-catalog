@@ -1,0 +1,41 @@
+<html>
+<head>
+    <!-- <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}"> -->
+</head>
+
+<body>
+    <!--MESSAGE FLASHING EXAMPLE -->
+    <div class = 'flash'>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+          <li><strong>{{message}}</strong></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+<h1>course's name:{{course.name}}</h1>
+<a href="{{url_for('createStudent', course_id = course.id)}}">Add New Student</a>
+<h3>students' name:</h3>
+
+{%for i in students%}
+<div>
+    <p>{{i.name}}</p>
+    <p>{{i.id}}</p>
+    <p>{{i.score}}</p>
+    <p>{{i.phone}}</p>
+    <a href={{url_for('editStudent', student_id = i.id, course_id = course.id)}}>Edit Student</a>
+    </br>
+    <a href={{url_for('deleteStudent', student_id = i.id, course_id = course.id)}}>Delete Student</a>
+    </br>
+    </br>
+    </br>
+    
+</div>
+{% endfor %}
+
+</body>
+</html>
