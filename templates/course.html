@@ -1,39 +1,55 @@
-<html>
-<head>
-    <!-- <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}"> -->
-</head>
-
-<body>
-
-    <!--MESSAGE FLASHING EXAMPLE -->
-    <div class = 'flash'>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-
-        <ul>
-        {% for message in messages %}
-          <li><strong>{{message}}</strong></li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+    <div class="row top-menu">
+        <div class="col-md-10"></div>
+        <div class="col-md-2 text-right">
+                    </div>
+    </div>
+    <div class="row divider blue">
+        <div class="col-md-12"></div>
+    </div>
+    <div class="row banner main">
+        <div class="col-md-1"></div>
+        <div class="col-md-11 padding-none">
+            <h1>Courses</h1>
+        </div>
     </div>
 
-<a href="{{url_for('newCourse')}}">Create New Course</a>
-<h1>
-    course name:
-</h1>
+<div class = 'flash'>
+              {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
 
-{%for i in courses%}
-<h3>{{i.name}}</h3>
-<a href="{{url_for('showStudent', course_id = i.id)}}">show the students</a>
-</br>
-<a href="{{url_for('editCourse', course_id = i.id)}}">Edit Course</a>
-</br>
-<a href="{{url_for('deleteCourse', course_id = i.id)}}">Delete Course</a>
-
-
-{% endfor %}
-
-</body>
-</html>
+</div>
+    
+    <div class="row padding-top padding-bottom">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 padding-none">
+            <a href="{{url_for('newCourse')}}">
+                <button class="btn btn-default" id="new-restaurant">
+                    <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add Course
+                </button>
+            </a>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    {% for course in courses %}
+        <a href = "{{url_for('showStudent', course_id = course.id)}}">
+            <div class="row">
+                <div class="col-md-1"></div>
+                    <div class="col-md-10 restaurant-list">
+                        <h3>{{course.name}}</h3>
+                    </div>
+                <div class="col-md-1"></div>
+            </div>
+        </a>
+    {% endfor %}
+{% endblock %}

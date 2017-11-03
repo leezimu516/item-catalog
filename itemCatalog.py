@@ -151,7 +151,7 @@ def deleteStudent(course_id, student_id):
         flash("student has been deleted")  
         return redirect(url_for('showStudent', course_id=course_id))
     else:
-        return render_template("delete_student.html", student_id=student_id, course_id=course_id)
+        return render_template("delete_student.html", student=deleteStudent, course_id=course_id)
 
 
 
