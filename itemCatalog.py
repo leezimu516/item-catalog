@@ -112,9 +112,9 @@ def createStudent(course_id):
     # return "add students for course: %s" %course_id
     if request.method == "POST":
         newStudent = Student(
-            name = request.form["name"],
-            score = 'A',
-            phone = '514-111-1111',
+            name = request.form.get("name", None),
+            score = request.form.get("score", None),
+            phone = request.form.get("phone", None),
             course_id = course_id)
         session.add(newStudent)
         session.commit()
@@ -130,13 +130,24 @@ def editStudent(course_id, student_id):
     # return "update student %s for course %s" %(student_id, course_id)
     editedStudent = session.query(Student).filter_by(id=student_id).one()
     if request.method == "POST":
-        if request.form["name"]:
-            editedStudent.name = request.form["name"]
-            session.add(editedStudent)
-            flash("student has been edited")
-            return redirect(url_for('showStudent', course_id=course_id))
+        if request.form.get("name", None):
+            editedStudent.name = request.form.get("name", None)
+            print "name edit"
+
+        if request.form.get("score", None):
+            editedStudent.score = request.form.get("score", None)
+            print "score edit"
+            
+        if request.form.get("phone", None):
+            editedStudent.phone = request.form.get("phone", None)
+            print "phone edit"
+        
+        session.add(editedStudent)
+        session.commit()
+        flash("student has been edited")
+        return redirect(url_for('showStudent', course_id=course_id))
     else:
-        return render_template("edit_student.html", student_id=student_id, course_id=course_id)
+        return render_template("edit_student.html", student=editedStudent, student_id=student_id, course_id=course_id)
     
 
 
