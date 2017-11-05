@@ -198,8 +198,8 @@ def showCourse():
 @app.route("/course/new", methods=["POST", 'GET'])
 def newCourse():
     # login to modify
-    if 'username' not in login_session:
-        return redirect('/login')
+    # if 'username' not in login_session:
+    #     return redirect('/login')
 
     if request.method == "POST":
         newCourse = Course(name = request.form["name"], user_id=login_session['user_id'])
@@ -214,8 +214,8 @@ def newCourse():
 @app.route("/course/<int:course_id>/edit", methods=["POST", 'GET'])
 def editCourse(course_id):
     # login to modify
-    if 'username' not in login_session:
-        return redirect('/login')
+    # if 'username' not in login_session:
+    #     return redirect('/login')
 
     editedCourse = session.query(Course).filter_by(id=course_id).one()
     if request.method == "POST":       
@@ -234,8 +234,8 @@ def editCourse(course_id):
 @app.route("/course/<int:course_id>/delete", methods=["POST", 'GET'])
 def deleteCourse(course_id):
     # login to modify
-    if 'username' not in login_session:
-        return redirect('/login')
+    # if 'username' not in login_session:
+    #     return redirect('/login')
 
     deleteCourse = session.query(Course).filter_by(id=course_id).one()
     if request.method == "POST":
@@ -263,8 +263,8 @@ def showStudent(course_id):
 @app.route("/course/<int:course_id>/student/new", methods=["POST", 'GET'])
 def createStudent(course_id):
     # login to modify
-    if 'username' not in login_session:
-        return redirect('/login')
+    # if 'username' not in login_session:
+    #     return redirect('/login')
 
     course = session.query(Course).filter_by(id=course_id).one()
     if request.method == "POST":
@@ -286,8 +286,8 @@ def createStudent(course_id):
 @app.route("/course/<int:course_id>/student/<int:student_id>/edit", methods=["POST", 'GET'])
 def editStudent(course_id, student_id):
     # login to modify
-    if 'username' not in login_session:
-        return redirect('/login')
+    # if 'username' not in login_session:
+    #     return redirect('/login')
 
     editedStudent = session.query(Student).filter_by(id=student_id).one()
     if request.method == "POST":
