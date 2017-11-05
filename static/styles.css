@@ -90,7 +90,7 @@ h3 {
     font-weight: 400;
 }
 .divider {
-    height: 15px;
+    height: 0px;
 }
 .divider.blue {
     background-color: #42C3C9;
@@ -160,4 +160,12 @@ u }
     list-style-type: none;
     text-align: center;
 
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
 }
