@@ -21,7 +21,7 @@ class Course(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User)
+    user = relationship(User, cascade='all')
 
     @property
     def serialize(self):
@@ -39,9 +39,9 @@ class Student(Base):
     score = Column(String(5))
     phone = Column(String(15))
     course_id = Column(Integer, ForeignKey('course.id'))
-    course = relationship(Course)
+    course = relationship(Course, cascade='all')
     user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User)
+    user = relationship(User, cascade='all')
 
     @property
     def serialize(self):
