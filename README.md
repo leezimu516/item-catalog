@@ -41,6 +41,7 @@ To execute the program run `prthon itemCatalog.py` in your terminal
 
 Open `localhost:8000` in your brower in order to do operations
 
+
 ## Display example
 ### In this sample project, the homepage displays all current categories along with the latest added items.
 ![screen shot 2017-11-05 at 12 06 21 pm](https://user-images.githubusercontent.com/22245275/32417082-d3f482ba-c221-11e7-9f3c-d2b687016802.png)
@@ -69,3 +70,8 @@ http://localhost:8000/course/4/student
 ![screen shot 2017-11-05 at 10 27 59 am](https://user-images.githubusercontent.com/22245275/32417067-862caa26-c221-11e7-9b01-8f1512c9ba5e.png)
 
 ![screen shot 2017-11-05 at 10 27 47 am](https://user-images.githubusercontent.com/22245275/32417068-863d14e2-c221-11e7-9080-cb5bce181b64.png)
+
+## improvement
+- add facebook login
+- improve style and layout
+- improve data model
