@@ -20,60 +20,67 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 # student for Math
-course1 = Course(name = "Math")
+course1 = Course(name="Math")
 
 session.add(course1)
 session.commit()
 
-student1 = Student(name = "Adams", score = "A+", phone = "%s" %gen_phone(), course = course1)
+student1 = Student(name="Adams", score="A+",
+                   phone="%s" % gen_phone(), course=course1)
 session.add(student1)
 session.commit()
 
-student2 = Student(name = "Baker", score = "B+", phone = "%s" %gen_phone(), course = course1)
+student2 = Student(name="Baker", score="B+",
+                   phone="%s" % gen_phone(), course=course1)
 session.add(student2)
 session.commit()
 
-student3 = Student(name = "Usman", score = "A-", phone = "%s" %gen_phone(), course = course1)
+student3 = Student(name="Usman", score="A-",
+                   phone="%s" % gen_phone(), course=course1)
 session.add(student3)
 session.commit()
 
 
 # student for Chinese
-course2 = Course(name = "Chinese")
+course2 = Course(name="Chinese")
 
 session.add(course2)
 session.commit()
 
-student1 = Student(name = "Trott", score = "C+", phone = "%s" %gen_phone(), course = course2)
+student1 = Student(name="Trott", score="C+",
+                   phone="%s" % gen_phone(), course=course2)
 session.add(student1)
 session.commit()
 
-student2 = Student(name = "Patel", score = "B-", phone = "%s" %gen_phone(), course = course2)
+student2 = Student(name="Patel", score="B-",
+                   phone="%s" % gen_phone(), course=course2)
 session.add(student2)
 session.commit()
 
-student3 = Student(name = "Yakub", score = "B-", phone = "%s" %gen_phone(), course = course2)
+student3 = Student(name="Yakub", score="B-",
+                   phone="%s" % gen_phone(), course=course2)
 session.add(student3)
 session.commit()
 
 # student for Taichi
-course3 = Course(name = "Taichi")
+course3 = Course(name="Taichi")
 
 session.add(course2)
 session.commit()
 
-student1 = Student(name = "Clark", score = "B+", phone = "%s" %gen_phone(), course = course3)
+student1 = Student(name="Clark", score="B+",
+                   phone="%s" % gen_phone(), course=course3)
 session.add(student1)
 session.commit()
 
-student2 = Student(name = "Ochoa", score = "A", phone = "%s" %gen_phone(), course = course3)
+student2 = Student(name="Ochoa", score="A",
+                   phone="%s" % gen_phone(), course=course3)
 session.add(student2)
 session.commit()
 
-student3 = Student(name = "Smith", score = "A", phone = "%s" %gen_phone(), course = course3)
+student3 = Student(name="Smith", score="A",
+                   phone="%s" % gen_phone(), course=course3)
 session.add(student3)
 session.commit()
 
 print "added students"
-
-    

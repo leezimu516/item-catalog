@@ -6,12 +6,14 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
+
 class User(Base):
     __tablename__ = "user"
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
     email = Column(String(250), nullable=False)
     picture = Column(String(250))
+
 
 class Course(Base):
     __tablename__ = "course"
@@ -25,8 +27,8 @@ class Course(Base):
     def serialize(self):
         """Return object data in easily serializeable format"""
         return {
-            "id" : self.id,
-            "name" : self.name,
+            "id": self.id,
+            "name": self.name,
         }
 
 
@@ -45,8 +47,8 @@ class Student(Base):
     def serialize(self):
         """Return object data in easily serializeable format"""
         return {
-            "id" : self.id,
-            "name" : self.name,
+            "id": self.id,
+            "name": self.name,
             "score": self.score,
             "phone": self.phone,
         }
