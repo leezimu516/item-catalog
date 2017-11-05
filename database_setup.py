@@ -6,11 +6,20 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
+class User(Base):
+    __tablename__ = "user"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250), nullable=False)
+    email = Column(String(250), nullable=False)
+    picture = Column(String(250))
+
 class Course(Base):
     __tablename__ = "course"
 
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
 
     @property
     def serialize(self):
@@ -29,6 +38,8 @@ class Student(Base):
     phone = Column(String(15))
     course_id = Column(Integer, ForeignKey('course.id'))
     course = relationship(Course)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
 
     @property
     def serialize(self):
@@ -41,6 +52,6 @@ class Student(Base):
         }
 
 
-engine = create_engine('sqlite:///course_student.db')
+engine = create_engine('sqlite:///course_student_user.db')
 
 Base.metadata.create_all(engine)
