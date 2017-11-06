@@ -254,11 +254,17 @@ def newCourse():
 # edit course
 @app.route("/course/<int:course_id>/edit", methods=["POST", 'GET'])
 def editCourse(course_id):
+    '''allow user to edit course'''
     # login to modify
     # if 'username' not in login_session:
     #     return redirect('/login')
 
     editedCourse = session.query(Course).filter_by(id=course_id).one()
+    creator = getUserInfo(editedCourse.user_id)
+    # autorization check
+    if login_session["user_id"] != creator.id:
+        return redirect('/login')
+
     if request.method == "POST":
         if request.form["name"]:
             editedCourse.name = request.form["name"]
@@ -276,9 +282,16 @@ def editCourse(course_id):
 @app.route("/course/<int:course_id>/delete", methods=["POST", 'GET'])
 @login_required
 def deleteCourse(course_id):
+    '''allow user to delete course'''
     # login to modify
     # if 'username' not in login_session:
     #     return redirect('/login')
+
+    catalog_to_delete = session.query(Course).filter_by(id=course_id).one()
+    creator = getUserInfo(catalog_to_delete.user_id)
+    # autorization check
+    if login_session["user_id"] != creator.id:
+        return redirect('/login')
 
     deleteCourse = session.query(Course).filter_by(id=course_id).one()
     if request.method == "POST":
@@ -318,6 +331,7 @@ def createStudent(course_id):
     #     return redirect('/login')
 
     course = session.query(Course).filter_by(id=course_id).one()
+
     if request.method == "POST":
         newStudent = Student(
             name=request.form.get("name", None),
@@ -344,6 +358,11 @@ def editStudent(course_id, student_id):
     #     return redirect('/login')
 
     editedStudent = session.query(Student).filter_by(id=student_id).one()
+    creator = getUserInfo(editedStudent.user_id)
+    # autorization check
+    if login_session["user_id"] != creator.id:
+        return redirect('/login')
+
     if request.method == "POST":
         if request.form.get("name", None):
             editedStudent.name = request.form.get("name", None)
@@ -376,6 +395,11 @@ def deleteStudent(course_id, student_id):
     #     return redirect('/login')
 
     deleteStudent = session.query(Student).filter_by(id=student_id).one()
+    creator = getUserInfo(deleteStudent.user_id)
+    # autorization check
+    if login_session["user_id"] != creator.id:
+        return redirect('/login')
+
     if request.method == "POST":
         session.delete(deleteStudent)
         session.commit()
